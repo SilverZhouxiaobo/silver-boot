@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.hbsoftwore.framework</groupId>
+	<artifactId>framework</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<modules>
+		<module>framework-core</module>
+	</modules>
+	<name>hbsoftwore framework</name>
+	<description>HBFramework for Spring Cloud Alibaba</description>
+	<properties>
+		<framework.version>1.0-SNAPSHOT</framework.version>
+		<java.version>1.8</java.version>
+		<maven.plugin.version>3.8.1</maven.plugin.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring.boot.version>2.4.3</spring.boot.version>
+
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<maven-compiler-plugin.version>3.6.3</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+		<maven-source-plugin.version>3.2.0</maven-source-plugin.version>
+		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+		<maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
+
+		<!-- 推荐使用Harbor -->
+		<docker-maven-plugin.version>1.2.2</docker-maven-plugin.version>
+		<sonar.exclusions>mate-admin/**/*, mate-core/**/*</sonar.exclusions>
+		<docker.baseImage>openjdk:8-jre-alpine</docker.baseImage>
+		<docker.volumes>/tmp</docker.volumes>
+		<docker.image.prefix>192.168.1.10:8080/hbcloud</docker.image.prefix>
+		<docker.java.security.egd>-Djava.security.egd=file:/dev/./urandom</docker.java.security.egd>
+		<docker.java.opts>-Xms128m -Xmx128m</docker.java.opts>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>cn.hbsoftwore.framework</groupId>
+				<artifactId>framework-starter-dependencies</artifactId>
+				<version>${framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<!--<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Release Repository</name>
+			<url>http://nexus.mate.vip/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://nexus.mate.vip/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>-->
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker-maven-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
