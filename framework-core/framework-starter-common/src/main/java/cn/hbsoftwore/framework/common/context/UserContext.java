@@ -1,7 +1,6 @@
 package cn.hbsoftwore.framework.common.context;
 
-
-import vip.mate.core.common.entity.LoginUser;
+import cn.hbsoftwore.framework.common.entity.LoginUser;
 
 /**
  * 用户上下文

@@ -1,8 +1,8 @@
 package cn.hbsoftwore.framework.common.util;
 
+import cn.hbsoftwore.framework.common.constant.Oauth2Constant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import vip.mate.core.common.constant.Oauth2Constant;
 
 import java.util.Base64;
 

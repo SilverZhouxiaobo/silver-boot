@@ -1,11 +1,11 @@
 package cn.hbsoftwore.framework.common.api;
 
+import cn.hbsoftwore.framework.common.constant.MateConstant;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.Getter;
-import vip.mate.core.common.constant.MateConstant;
 
 import java.io.Serializable;
 

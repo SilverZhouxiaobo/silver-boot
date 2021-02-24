@@ -1,13 +1,13 @@
-package cn.hbsoftwore.framework.common;
+package cn.hbsoftware.framework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FrameworkStarterCommonApplication {
+public class FrameworkStarterFileApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FrameworkStarterCommonApplication.class, args);
+		SpringApplication.run(FrameworkStarterFileApplication.class, args);
 	}
 
 }

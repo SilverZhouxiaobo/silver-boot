@@ -1,7 +1,7 @@
 package cn.hbsoftwore.framework.common.util;
 
+import cn.hbsoftwore.framework.common.constant.MateConstant;
 import org.slf4j.MDC;
-import vip.mate.core.common.constant.MateConstant;
 
 import javax.servlet.http.HttpServletRequest;
 

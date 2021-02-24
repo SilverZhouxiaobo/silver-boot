@@ -1,11 +1,8 @@
 package cn.hbsoftwore.framework.common.util;
 
+import cn.hbsoftwore.framework.common.constant.Oauth2Constant;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import vip.mate.core.common.constant.Oauth2Constant;
-import vip.mate.core.common.context.UserContext;
-import vip.mate.core.common.entity.LoginUser;
-import vip.mate.core.common.exception.TokenException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,7 +34,7 @@ public class SecurityUtil {
 	public static String getToken(HttpServletRequest request) {
 		String headerToken = getHeaderToken(request);
 		if (StringUtil.isBlank(headerToken)) {
-			throw new TokenException("没有携带Token信息！");
+//			throw new TokenException("没有携带Token信息！");
 		}
 		return StringUtil.isNotBlank(headerToken) ? TokenUtil.getToken(headerToken) : "";
 	}
@@ -54,7 +51,7 @@ public class SecurityUtil {
 			try {
 				claims = TokenUtil.getClaims(token);
 			} catch (Exception e) {
-				throw new TokenException("Token已过期！");
+//				throw new TokenException("Token已过期！");
 			}
 		}
 		return claims;
@@ -66,17 +63,17 @@ public class SecurityUtil {
 	 * @param request HttpServletRequest
 	 * @return LoginUser
 	 */
-	public static LoginUser getUsername(HttpServletRequest request) {
-
-		String token = getToken(request);
-		Claims claims = getClaims(token);
-		// 然后根据token获取用户登录信息，这里省略获取用户信息的过程
-		LoginUser loginUser = new LoginUser();
-		loginUser.setUserId(String.valueOf(claims.get(Oauth2Constant.MATE_USER_ID)));
-		loginUser.setAccount((String) claims.get(Oauth2Constant.MATE_USER_NAME));
-		loginUser.setRoleId(String.valueOf(claims.get(Oauth2Constant.MATE_ROLE_ID)));
-		loginUser.setType(NumberUtil.stoi(String.valueOf(claims.get(Oauth2Constant.MATE_TYPE))));
-		UserContext.setUser(loginUser);
-		return loginUser;
-	}
+//	public static LoginUser getUsername(HttpServletRequest request) {
+//
+//		String token = getToken(request);
+//		Claims claims = getClaims(token);
+//		// 然后根据token获取用户登录信息，这里省略获取用户信息的过程
+//		LoginUser loginUser = new LoginUser();
+//		loginUser.setUserId(String.valueOf(claims.get(Oauth2Constant.MATE_USER_ID)));
+//		loginUser.setAccount((String) claims.get(Oauth2Constant.MATE_USER_NAME));
+//		loginUser.setRoleId(String.valueOf(claims.get(Oauth2Constant.MATE_ROLE_ID)));
+//		loginUser.setType(NumberUtil.stoi(String.valueOf(claims.get(Oauth2Constant.MATE_TYPE))));
+//		UserContext.setUser(loginUser);
+//		return loginUser;
+//	}
 }
