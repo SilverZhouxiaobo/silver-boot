@@ -15,9 +15,8 @@
 	<description>Dependencies for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<framework.core.version>2.3.8-SNAPSHOT</framework.core.version>
+		<framework.core.version>1.0-SNAPSHOT</framework.core.version>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-
 		<spring.boot.version>2.3.8.RELEASE</spring.boot.version>
 		<spring.cloud.version>Hoxton.SR10</spring.cloud.version>
 		<alibaba.cloud.version>2.2.5.RELEASE</alibaba.cloud.version>
@@ -32,8 +31,9 @@
 
 		<mysql.connector.version>8.0.22</mysql.connector.version>
 		<oracle.connector.version>12.2.0.1</oracle.connector.version>
-		<postgresql.connector.version>42.2.6</postgresql.connector.version>
-		<druid.version>1.2.4</druid.version>
+		<postgresql.connector.version>9.4.1212</postgresql.connector.version>
+
+		<druid.version>1.2.5</druid.version>
 		<mybatis.plus.version>3.4.2</mybatis.plus.version>
 		<velocity.version>1.7</velocity.version>
 
@@ -82,6 +82,32 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<!-- 本系统开发jar -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>framework-starter-mybatis</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>framework-starter-postgresql</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>framework-starter-mongodb</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>framework-starter-file</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>framework-starter-common</artifactId>
+				<version>${framework.core.version}</version>
+			</dependency>
 			<!-- 微服务基础包 -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -104,23 +130,20 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
 			<!-- Druid -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid-spring-boot-starter</artifactId>
 				<version>${druid.version}</version>
 			</dependency>
+
+			<!-- 数据库 -->
 			<!-- MySql -->
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.connector.version}</version>
-			</dependency>
-			<!-- Oracle -->
-			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc7</artifactId>
-				<version>${oracle.connector.version}</version>
 			</dependency>
 			<!-- PostgreSql -->
 			<dependency>
@@ -128,6 +151,7 @@
 				<artifactId>postgresql</artifactId>
 				<version>${postgresql.connector.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter</artifactId>
