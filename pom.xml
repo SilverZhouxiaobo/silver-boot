@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.hbsoftware.framework</groupId>
     <artifactId>framework</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <version>${revision}</version>
     <modules>
         <module>framework-core</module>
-        <module>framework-nacos</module>
+        <module>framework-system</module>
     </modules>
     <name>hbsoftwore framework</name>
     <description>HBFramework for Spring Cloud Alibaba</description>
@@ -94,62 +94,16 @@
                         </execution>
                     </executions>
                 </plugin>
-               <!-- <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>${docker-maven-plugin.version}</version>
-                    <configuration>
-                        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                        <imageTags>
-                            <imageTag>${project.version}</imageTag>
-                            <imageTag>latest</imageTag>
-                        </imageTags>
-                        <forceTags>true</forceTags>
-                        <baseImage>${docker.baseImage}</baseImage>
-                        <volumes>${docker.volumes}</volumes>
-                        <env>
-                            <JAVA_OPTS>${docker.java.opts}</JAVA_OPTS>
-                        </env>
-                        <entryPoint>["sh","-c","java $JAVA_OPTS ${docker.java.security.egd} -jar
-                            /${project.build.finalName}.jar"]
-                        </entryPoint>
-                        <resources>
-                            <resource>
-                                <targetPath>/</targetPath>
-                                <directory>${project.build.directory}</directory>
-                                <include>${project.build.finalName}.jar</include>
-                            </resource>
-                        </resources>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <configuration>
-                                <tasks>
-                                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;
-                                    <copy overwrite="true"
-                                          tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"
-                                          file="${project.build.directory}/${project.artifactId}.jar"/>
-                                </tasks>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>-->
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--<plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${docker-maven-plugin.version}</version>
-            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

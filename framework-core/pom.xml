@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.hbsoftware.framework</groupId>
     <artifactId>framework-core</artifactId>
-    <version>${revision}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>framework-core</name>
     <description>Framework Core for Spring Boot</description>
@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <framework.core.version>1.0-SNAPSHOT</framework.core.version>
     </properties>
-    <dependencies>
+<!--    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -39,7 +39,7 @@
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
         </dependency>
-    </dependencies>
+    </dependencies>-->
     <dependencyManagement>
         <dependencies>
             <dependency>

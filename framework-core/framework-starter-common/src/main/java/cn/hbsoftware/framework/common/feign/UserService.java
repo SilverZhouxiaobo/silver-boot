@@ -1,11 +1,9 @@
 package cn.hbsoftware.framework.common.feign;
 
+import cn.hbsoftware.framework.common.constant.ServiceNameConstants;
+import cn.hbsoftware.framework.common.feign.fallback.UserServiceFallbackFactory;
 import cn.hbsoftware.framework.common.model.LoginAppUser;
 import cn.hbsoftware.framework.common.model.SysUser;
-import com.central.common.constant.ServiceNameConstants;
-import com.central.common.feign.fallback.UserServiceFallbackFactory;
-import com.central.common.model.LoginAppUser;
-import com.central.common.model.SysUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
