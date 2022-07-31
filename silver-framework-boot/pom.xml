@@ -11,6 +11,7 @@
         <java.version>17</java.version>
         <framework.core.version>1.0-SNAPSHOT</framework.core.version>
         <spring.boot.version>2.7.2</spring.boot.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -27,8 +28,7 @@
         <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
     </properties>
     <modules>
-        <module>framework-core</module>
-        <module>framework-system</module>
+
     </modules>
     <dependencyManagement>
         <dependencies>

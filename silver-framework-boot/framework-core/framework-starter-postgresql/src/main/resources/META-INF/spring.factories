@@ -1,6 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.hbsoftware.framework.postgresql.config.MybatisPlusConfiguration,\
-  cn.hbsoftware.framework.postgresql.config.DruidConfiguration,\
-  cn.hbsoftware.framework.postgresql.config.TenantConfiguration
-
-
