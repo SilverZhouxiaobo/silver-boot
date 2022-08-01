@@ -3,20 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.silver.boot</groupId>
-    <artifactId>silver-framework</artifactId>
+    <groupId>cn.silver.framework</groupId>
+    <artifactId>framework-boot</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>pom</packaging>
+    <name>silver-framework-boot</name>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <framework.core.version>1.0-SNAPSHOT</framework.core.version>
-        <spring.boot.version>2.7.2</spring.boot.version>
+        <spring.boot.version>2.5.11</spring.boot.version>
+        <druid.version>1.2.8</druid.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <swagger.version>3.0.0</swagger.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <mybatis-spring-boot.version>2.2.2</mybatis-spring-boot.version>
+        <pagehelper.boot.version>1.4.1</pagehelper.boot.version>
+        <fastjson.version>1.2.79</fastjson.version>
+        <oshi.version>6.1.2</oshi.version>
+        <jna.version>5.10.0</jna.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
+        <poi.version>4.1.2</poi.version>
+        <velocity.version>2.3</velocity.version>
+        <jwt.version>0.9.1</jwt.version>
+        <aliyun.oss.version>3.11.2</aliyun.oss.version>
+        <minio.version>8.0.3</minio.version>
+        <hutool-all.version>5.3.8</hutool-all.version>
+        <knife4j-spring-boot-starter.version>3.0</knife4j-spring-boot-starter.version>
+        <zxing.version>3.3.3</zxing.version>
+        <tkmapper.version>4.2.0</tkmapper.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <maven.plugin.version>3.8.1</maven.plugin.version>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
@@ -28,7 +50,22 @@
         <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
     </properties>
     <modules>
-
+        <module>framework-admin</module>
+        <module>framework-bus</module>
+        <module>framework-common</module>
+        <module>framework-develop</module>
+        <module>framework-job</module>
+        <module>framework-message</module>
+        <module>framework-module</module>
+        <module>framework-online</module>
+        <module>framework-report</module>
+        <module>framework-resource</module>
+        <module>framework-system</module>
+        <module>framework-workflow</module>
+        <module>framework-monitor</module>
+        <module>framework-config</module>
+        <module>framework-authority</module>
+        <module>framework-db</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -38,6 +75,199 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+            </dependency>
+
+            <!-- SpringBoot集成mybatis框架 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna-platform</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- 文件上传工具类 -->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- velocity代码生成使用模板 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+
+            <!-- collections工具类 -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons.collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tkmapper.version}</version>
+            </dependency>
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- Token生成与解析-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+
+            <!-- 验证码 -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!-- zxing生成二维码 -->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${zxing.version}</version>
+            </dependency>
+            <!-- 核心模块-->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-common</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+
+            <!-- 系统模块-->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-system</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+
+            <!-- 定时任务-->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-job</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+
+            <!-- 代码生成-->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-develop</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+
+            <!-- 文件服务 -->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-resource</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <!-- 流程服务 -->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-workflow</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <!-- 业务服务 -->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-module</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-message</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-online</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-bus</artifactId>
+                <version>${framework.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-report</artifactId>
+                <version>${framework.core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -72,29 +302,29 @@
             </properties>
         </profile>
     </profiles>
-    <build>
-        <!-- 指定打包后生成的文件名 -->
-        <finalName>${project.artifactId}-${project.version}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
-
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
     <distributionManagement>
         <repository>
             <id>rdc-releases</id>
