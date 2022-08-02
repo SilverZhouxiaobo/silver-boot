@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.workflow.mapper.FlowWorkOrderMapper">
+    <resultMap id="BaseResultMap" type="cn.silver.framework.workflow.domain.FlowWorkOrder">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="business_key" jdbcType="VARCHAR" property="businessKey"/>
+        <result column="business_link" jdbcType="VARCHAR" property="businessLink"/>
+        <result column="process_instance_id" jdbcType="VARCHAR" property="processInstanceId"/>
+        <result column="process_definition_id" jdbcType="VARCHAR" property="processDefinitionId"/>
+        <result column="process_definition_key" jdbcType="VARCHAR" property="processDefinitionKey"/>
+        <result column="process_definition_name" jdbcType="VARCHAR" property="processDefinitionName"/>
+        <result column="task_id" jdbcType="VARCHAR" property="taskId"/>
+        <result column="task_definition_key" jdbcType="VARCHAR" property="taskDefinitionKey"/>
+        <result column="task_name" jdbcType="VARCHAR" property="taskName"/>
+        <result column="online_table_id" jdbcType="VARCHAR" property="onlineTableId"/>
+        <result column="table_name" jdbcType="VARCHAR" property="tableName"/>
+        <result column="submit_id" jdbcType="VARCHAR" property="submitId"/>
+        <result column="submit_name" jdbcType="VARCHAR" property="submitName"/>
+        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+        <result column="dept_name" jdbcType="BIGINT" property="deptName"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_name" jdbcType="VARCHAR" property="createName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_name" jdbcType="VARCHAR" property="updateName"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="deleted" jdbcType="VARCHAR" property="deleted"/>
+    </resultMap>
+    <select id="selectByBusinessKeys" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM flow_work_order
+        <where>
+            business_key in
+            <foreach collection="businessKeys" item="businessKey" separator="," open="(" close=")">
+                #{businessKey}
+            </foreach>
+            and deleted = 0
+        </where>
+    </select>
+    <select id="selectByInstanceIds" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM flow_work_order
+        <where>
+            process_instance_id in
+            <foreach collection="instanceIds" item="instanceId" separator="," open="(" close=")">
+                #{instanceId}
+            </foreach>
+            and deleted = 0
+        </where>
+    </select>
+    <select id="selectByTaskId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM flow_work_order
+        <where>
+            TASK_ID in
+            <foreach collection="taskIds" item="taskId" separator="," open="(" close=")">
+                #{taskId}
+            </foreach>
+            and deleted = 0
+        </where>
+    </select>
+    <select id="selectByBusinessKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM flow_work_order
+        where business_key = #{businessKey}
+          and deleted = 0
+    </select>
+    <select id="selectByInstanceId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT *
+        FROM flow_work_order
+        where PROCESS_INSTANCE_ID = #{instanceId}
+          and deleted = 0
+    </select>
+    <update id="deleteByInstanceId" parameterType="java.lang.String">
+        update FLOW_WORK_ORDER
+        set DELETED=1
+        where PROCESS_INSTANCE_ID = #{instanceId}
+    </update>
+    <update id="deleteByBusinessKeys" parameterType="java.lang.String">
+        update FLOW_WORK_ORDER
+        set DELETED=1
+        <where>
+            business_key in
+            <foreach collection="businessKeys" item="businessKey" separator="," open="(" close=")">
+                #{businessKey}
+            </foreach>
+            and deleted = 0
+        </where>
+    </update>
+    <select id="getSearchValue" resultMap="BaseResultMap">
+        select distinct process_definition_name, process_definition_key
+        from flow_work_order
+    </select>
+</mapper>

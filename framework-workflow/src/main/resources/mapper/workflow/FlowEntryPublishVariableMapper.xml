@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.workflow.mapper.FlowEntryPublishVariableMapper">
+    <resultMap id="BaseResultMap" type="cn.silver.framework.workflow.domain.FlowEntryPublishVariable">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="entry_publish_id" jdbcType="VARCHAR" property="entryPublishId"/>
+        <result column="variable_name" jdbcType="VARCHAR" property="variableName"/>
+        <result column="show_name" jdbcType="VARCHAR" property="showName"/>
+        <result column="variable_type" jdbcType="INTEGER" property="variableType"/>
+        <result column="bind_datasource_id" jdbcType="VARCHAR" property="bindDatasourceId"/>
+        <result column="bind_relation_id" jdbcType="VARCHAR" property="bindRelationId"/>
+        <result column="bind_column_id" jdbcType="VARCHAR" property="bindColumnId"/>
+        <result column="builtin" jdbcType="BOOLEAN" property="builtin"/>
+    </resultMap>
+
+    <insert id="insertList">
+        INSERT INTO flow_entry_publish_variable VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.variableId},
+            #{item.entryPublishId},
+            #{item.variableName},
+            #{item.showName},
+            #{item.variableType},
+            #{item.bindDatasourceId},
+            #{item.bindRelationId},
+            #{item.bindColumnId},
+            #{item.builtin})
+        </foreach>
+    </insert>
+</mapper>

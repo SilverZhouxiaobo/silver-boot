@@ -1,0 +1,5 @@
+ureport:
+  debug: true
+  disableFileProvider: true
+  disableHttpSessionReportCache: false
+  fileStoreDir: ${app.profile}/ureport

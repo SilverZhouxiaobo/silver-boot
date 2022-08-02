@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.system.mapper.SysMenuMapper">
+
+    <resultMap type="cn.silver.framework.system.domain.SysMenu" id="SysMenuResult">
+        <id property="id" column="id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="parentName" column="parent_name"/>
+        <result property="pid" column="pid"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="path" column="path"/>
+        <result property="component" column="component"/>
+        <result property="componentName" column="component_name"/>
+        <result property="query" column="query"/>
+        <result property="isFrame" column="is_frame"/>
+        <result property="isCache" column="is_cache"/>
+        <result property="menuType" column="menu_type"/>
+        <result property="visible" column="visible"/>
+        <result property="status" column="status"/>
+        <result property="perms" column="perms"/>
+        <result property="icon" column="icon"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectMenuVo">
+        select id,
+               menu_name,
+               pid,
+               order_num,
+               path,
+               component,
+               component_name,
+               query,
+               is_frame,
+               is_cache,
+               menu_type,
+               visible,
+               status,
+               nvl(perms, '') as perms,
+               icon,
+               create_time
+        from sys_menu
+    </sql>
+
+    <select id="selectMenuList" parameterType="cn.silver.framework.system.domain.SysMenu" resultMap="SysMenuResult">
+        <include refid="selectMenuVo"/>
+        <where>
+            <if test="menuName != null and menuName != ''">
+                AND menu_name like concat(concat('%', #{menuName}), '%')
+            </if>
+            <if test="visible != null and visible != ''">
+                AND visible = #{visible}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
+        order by pid, order_num
+    </select>
+
+    <select id="selectMenuTreeAll" resultMap="SysMenuResult">
+        select distinct m.id,
+                        m.PID,
+                        m.menu_name,
+                        m.path,
+                        m.component,
+                        m.component_name,
+                        m.query,
+                        m.visible,
+                        m.status,
+                        NVL(m.perms, '') as perms,
+                        m.is_frame,
+                        m.is_cache,
+                        m.menu_type,
+                        m.icon,
+                        m.order_num,
+                        m.create_time
+        from sys_menu m
+        where m.menu_type in ('M', 'C')
+          and m.status = 0
+        order by m.PID, m.order_num
+    </select>
+
+    <select id="selectMenuListByUserId" parameterType="cn.silver.framework.system.domain.SysMenu"
+            resultMap="SysMenuResult">
+        select distinct m.id, m.PID, m.menu_name, m.path, m.component,m.component_name, m.query, m.visible, m.status,
+        nvl(m.perms,'') as perms, m.is_frame, m.is_cache, m.menu_type, m.icon, m.order_num, m.create_time
+        from sys_menu m
+        left join sys_role_menu rm on m.id = rm.menu_id
+        left join sys_user_role ur on rm.role_id = ur.role_id
+        left join sys_role ro on ur.role_id = ro.id
+        where ur.user_id = #{params.userId}
+        <if test="menuName != null and menuName != ''">
+            AND m.menu_name like concat(concat('%', #{menuName}), '%')
+        </if>
+        <if test="visible != null and visible != ''">
+            AND m.visible = #{visible}
+        </if>
+        <if test="status != null and status != ''">
+            AND m.status = #{status}
+        </if>
+        order by m.PID, m.order_num
+    </select>
+
+    <select id="selectMenuTreeByUserId" parameterType="java.lang.String" resultMap="SysMenuResult">
+        select distinct m.id,
+                        m.PID,
+                        m.menu_name,
+                        m.path,
+                        m.component,
+                        m.component_name,
+                        m.query,
+                        m.visible,
+                        m.status,
+                        nvl(m.perms, '') as perms,
+                        m.is_frame,
+                        m.is_cache,
+                        m.menu_type,
+                        m.icon,
+                        m.order_num,
+                        m.create_time
+        from sys_menu m
+                 left join sys_role_menu rm on m.id = rm.menu_id
+                 left join sys_user_role ur on rm.role_id = ur.role_id
+                 left join sys_role ro on ur.role_id = ro.id
+                 left join sys_user u on ur.user_id = u.id
+        where u.id = #{userId}
+          and m.menu_type in ('M', 'C')
+          and m.status = 0
+          AND ro.status = 0
+        order by m.PID, m.order_num
+    </select>
+
+    <select id="selectMenuListByRoleId" resultType="java.lang.String">
+        select m.id
+        from sys_menu m
+        left join sys_role_menu rm on m.id = rm.menu_id
+        where rm.role_id = #{roleId}
+        <if test="menuCheckStrictly">
+            and m.id not in (select m.PID from sys_menu m inner join sys_role_menu rm on m.id =
+            rm.menu_id and rm.role_id = #{roleId})
+        </if>
+        order by m.PID, m.order_num
+    </select>
+
+    <select id="selectMenuPerms" resultType="java.lang.String">
+        select distinct m.perms
+        from sys_menu m
+                 left join sys_role_menu rm on m.id = rm.menu_id
+                 left join sys_user_role ur on rm.role_id = ur.role_id
+    </select>
+
+    <select id="selectMenuPermsByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select distinct m.perms
+        from sys_menu m
+                 left join sys_role_menu rm on m.id = rm.menu_id
+                 left join sys_user_role ur on rm.role_id = ur.role_id
+                 left join sys_role r on r.id = ur.role_id
+        where m.status = '0'
+          and r.status = '0'
+          and ur.user_id = #{userId}
+    </select>
+
+    <select id="selectMenuById" parameterType="java.lang.String" resultMap="SysMenuResult">
+        <include refid="selectMenuVo"/>
+        where id = #{id}
+    </select>
+
+    <!--    <select id="hasChildByid" resultType="java.lang.Integer">
+            select count(1)
+            from sys_menu
+            where pid = #{id}
+        </select>-->
+
+    <select id="checkMenuNameUnique" parameterType="cn.silver.framework.system.domain.SysMenu"
+            resultMap="SysMenuResult">
+        <include refid="selectMenuVo"/>
+        where menu_name=#{menuName} and pid = #{pid}
+    </select>
+    <select id="hasChildByMenuId" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(1)
+        from SYS_MENU sm
+        where sm.PID = #{menuId}
+    </select>
+
+    <update id="updateMenu" parameterType="cn.silver.framework.system.domain.SysMenu">
+        update sys_menu
+        <set>
+            <if test="menuName != null and menuName != ''">menu_name = #{menuName},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="orderNum != null and orderNum != ''">order_num = #{orderNum},</if>
+            <if test="path != null and path != ''">path = #{path},</if>
+            <if test="component != null">component = #{component},</if>
+            <if test="componentName != null">component_name = #{componentName},</if>
+            <if test="query != null">query = #{query},</if>
+            <if test="isFrame != null and isFrame != ''">is_frame = #{isFrame},</if>
+            <if test="isCache != null and isCache != ''">is_cache = #{isCache},</if>
+            <if test="menuType != null and menuType != ''">menu_type = #{menuType},</if>
+            <if test="visible != null">visible = #{visible},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="perms !=null">perms = #{perms},</if>
+            <if test="icon !=null and icon != ''">icon = #{icon},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateName != null and updateName != ''">update_name = #{updateName},</if>
+            update_time = sysdate
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertMenu" parameterType="cn.silver.framework.system.domain.SysMenu">
+        insert into sys_menu(
+        id,
+        <if test="pid != null and pid != ''">pid,</if>
+        <if test="menuName != null and menuName != ''">menu_name,</if>
+        <if test="orderNum != null and orderNum != ''">order_num,</if>
+        <if test="path != null and path != ''">path,</if>
+        <if test="component != null and component != ''">component,</if>
+        <if test="componentName != null and componentName != ''">component_name,</if>
+        <if test="query != null and query != ''">query,</if>
+        <if test="menuType != null and menuType != ''">menu_type,</if>
+        <if test="visible != null">visible,</if>
+        <if test="isCache != null">is_cache,</if>
+        <if test="perms !=null and perms != ''">perms,</if>
+        <if test="icon != null and icon != ''">icon,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="isFrame != null and isFrame != ''">is_frame,</if>
+        <if test="status != null and status != ''">status,</if>
+        create_time,update_time
+        )values(
+        #{id},
+        <if test="pid != null and pid != ''">#{pid},</if>
+        <if test="menuName != null and menuName != ''">#{menuName},</if>
+        <if test="orderNum != null and orderNum != ''">#{orderNum},</if>
+        <if test="path != null and path != ''">#{path},</if>
+        <if test="component != null and component != ''">#{component},</if>
+        <if test="componentName != null and componentName != ''">#{componentName},</if>
+        <if test="query != null and query != ''">#{query},</if>
+        <if test="menuType != null and menuType != ''">#{menuType},</if>
+        <if test="visible != null">#{visible},</if>
+        <if test="isCache != null">#{isCache},</if>
+        <if test="perms !=null and perms != ''">#{perms},</if>
+        <if test="icon != null and icon != ''">#{icon},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="isFrame != null and isFrame != ''">#{isFrame},</if>
+        <if test="status != null and status != ''">#{status},</if>
+        sysdate,sysdate
+        )
+    </insert>
+
+    <delete id="deleteMenuById" parameterType="java.lang.String">
+        delete
+        from sys_menu
+        where id = #{id}
+    </delete>
+
+</mapper>
