@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.system.mapper.SysOperLogMapper">
+
+    <resultMap type="cn.silver.framework.system.domain.SysOperLog" id="SysOperLogResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="businessType" column="business_type"/>
+        <result property="method" column="method"/>
+        <result property="requestMethod" column="request_method"/>
+        <result property="operatorType" column="operator_type"/>
+        <result property="operName" column="oper_name"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="operUrl" column="oper_url"/>
+        <result property="operIp" column="oper_ip"/>
+        <result property="operLocation" column="oper_location"/>
+        <result property="operParam" column="oper_param"/>
+        <result property="jsonResult" column="json_result"/>
+        <result property="status" column="status"/>
+        <result property="errorMsg" column="error_msg"/>
+        <result property="operTime" column="oper_time"/>
+    </resultMap>
+
+    <sql id="selectOperLogVo">
+        select id,
+               title,
+               business_type,
+               method,
+               request_method,
+               operator_type,
+               oper_name,
+               dept_name,
+               oper_url,
+               oper_ip,
+               oper_location,
+               oper_param,
+               json_result,
+               status,
+               error_msg,
+               oper_time
+        from sys_oper_log
+    </sql>
+
+    <insert id="insertOperlog" parameterType="cn.silver.framework.system.domain.SysOperLog">
+        insert into sys_oper_log(id, title, business_type, method, request_method, operator_type,oper_url, oper_ip,
+        oper_location,status,
+        <if test="operParam != null and operParam != '' ">oper_param,</if>
+        <if test="jsonResult != null and jsonResult != '' ">json_result,</if>
+        <if test="errorMsg != null and errorMsg != '' ">error_msg,</if>
+        <if test="operName != null and operName != '' ">oper_name,</if>
+        <if test="deptName != null and deptName != '' ">dept_name,</if>
+        oper_time)
+        values (#{id}, #{title}, #{businessType}, #{method}, #{requestMethod}, #{operatorType},#{operUrl},
+        #{operIp}, #{operLocation},#{status},
+        <if test="operParam != null and operParam != '' ">#{operParam},</if>
+        <if test="jsonResult != null and jsonResult != '' ">#{jsonResult},</if>
+        <if test="errorMsg != null and errorMsg != '' ">#{errorMsg},</if>
+        <if test="operName != null and operName != '' ">#{operName},</if>
+        <if test="deptName != null and deptName != '' ">#{deptName},</if>
+        sysdate)
+    </insert>
+
+    <select id="selectOperLogList" parameterType="cn.silver.framework.system.domain.SysOperLog"
+            resultMap="SysOperLogResult">
+        <include refid="selectOperLogVo"/>
+        <where>
+            <if test="title != null and title != ''">
+                AND title like concat(concat('%', #{title}), '%')
+            </if>
+            <if test="businessType != null and businessType != ''">
+                AND business_type = #{businessType}
+            </if>
+            <if test="businessTypes != null and businessTypes.length > 0">
+                AND business_type in
+                <foreach collection="businessTypes" item="businessType" open="(" separator="," close=")">
+                    #{businessType}
+                </foreach>
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="operName != null and operName != ''">
+                AND oper_name like concat(concat('%', #{operName}), '%')
+            </if>
+            <if test="beginTime != null and beginTime != ''"><!-- 开始时间检索 -->
+                and to_date(to_char(oper_time,'yyyy-mm-dd'),'yyyy-mm-dd') &gt;= to_date(#{beginTime},'yyyy-mm-dd')
+            </if>
+            <if test="endTime != null and endTime != ''"><!-- 结束时间检索 -->
+                and to_date(to_char(oper_time,'yyyy-mm-dd'),'yyyy-mm-dd') &lt;= to_date(#{endTime},'yyyy-mm-dd')
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <delete id="deleteOperLogByIds" parameterType="java.lang.String">
+        delete from sys_oper_log where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectOperLogById" parameterType="java.lang.String" resultMap="SysOperLogResult">
+        <include refid="selectOperLogVo"/>
+        where id = #{id}
+    </select>
+
+    <update id="cleanOperLog">
+        truncate table sys_oper_log
+    </update>
+
+</mapper>

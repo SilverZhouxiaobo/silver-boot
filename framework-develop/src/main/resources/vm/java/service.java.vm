@@ -1,0 +1,22 @@
+package ${packageName}.service;
+
+    #if($table.crud)
+        #set($Service="IBaseService")
+    #elseif($table.data || $table.sub)
+        #set($Service="IBaseService")
+    #elseif($table.tree)
+        #set($Service="ITreeService")
+    #end
+
+import ${packageName}.domain.${ClassName};
+    $Service;
+
+/**
+ * ${functionName}Service接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface I${ClassName}Service extends $Service<${ClassName}> {
+
+        }

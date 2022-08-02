@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.workflow.mapper.FlowTaskCommentMapper">
+    <resultMap id="BaseResultMap" type="cn.silver.framework.workflow.domain.FlowTaskComment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="business_key" jdbcType="VARCHAR" property="businessKey"/>
+        <result column="business_code" jdbcType="VARCHAR" property="businessCode"/>
+        <result column="business_name" jdbcType="VARCHAR" property="businessName"/>
+        <result column="business_link" jdbcType="VARCHAR" property="businessLink"/>
+        <result column="process_instance_id" jdbcType="VARCHAR" property="processInstanceId"/>
+        <result column="task_id" jdbcType="VARCHAR" property="taskId"/>
+        <result column="task_key" jdbcType="VARCHAR" property="taskKey"/>
+        <result column="task_name" jdbcType="VARCHAR" property="taskName"/>
+        <result column="approval_type" jdbcType="VARCHAR" property="approvalType"/>
+        <result column="delegate_assignee" jdbcType="VARCHAR" property="delegateAssignee"/>
+        <result column="custom_business_data" jdbcType="LONGVARCHAR" property="customBusinessData"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_name" jdbcType="VARCHAR" property="createName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_name" jdbcType="VARCHAR" property="updateName"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="deleted" jdbcType="VARCHAR" property="deleted"/>
+    </resultMap>
+    <select id="selectListByInstanceId" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select *
+        from FLOW_TASK_COMMENT
+        where PROCESS_INSTANCE_ID = #{instanceId}
+    </select>
+    <select id="selectListByTaskIds" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select * from FLOW_TASK_COMMENT
+        <where>
+            task_id in
+            <foreach collection="taskIds" item="taskId" separator="," open="(" close=")">
+                #{taskId}
+            </foreach>
+        </where>
+    </select>
+</mapper>

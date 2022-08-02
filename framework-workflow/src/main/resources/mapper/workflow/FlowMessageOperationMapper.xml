@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.workflow.mapper.FlowMessageOperationMapper">
+    <resultMap id="BaseResultMap" type="cn.silver.framework.workflow.domain.FlowMessageOperation">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="message_id" jdbcType="VARCHAR" property="messageId"/>
+        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="operation_type" jdbcType="INTEGER" property="operationType"/>
+        <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime"/>
+    </resultMap>
+
+    <delete id="deleteByProcessInstanceId">
+        DELETE
+        FROM flow_message_operation a
+        WHERE EXISTS(SELECT *
+                     FROM flow_message b
+                     WHERE a.message_id = b.id
+                       AND b.process_instance_id = #{processInstanceId})
+    </delete>
+</mapper>
