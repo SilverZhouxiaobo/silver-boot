@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.system.mapper.SysReportMapper">
+
+    <resultMap type="cn.silver.framework.system.domain.SysReport" id="BaseResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="tempFileName" column="temp_file_name"/>
+        <result property="prefix" column="prefix"/>
+        <result property="fileStoreDir" column="file_store_dir"/>
+        <result property="fullPath" column="full_path"/>
+        <result property="remark" column="remark"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createName" column="create_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateName" column="update_name"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+    <!-- **************************自定义SQL区域************************** -->
+    <!-- 根据code查询参数 -->
+    <select id="selectParamByCode" parameterType="java.lang.String" resultMap="BaseResult">
+        select *
+        from sys_report
+        where code = #{code}
+    </select>
+    <!-- 根据模板的存放路径查询唯一的模板信息 -->
+    <select id="selectSignleByFullPath" parameterType="java.lang.String" resultMap="BaseResult">
+        select *
+        from sys_report
+        where full_path = #{fullPath}
+    </select>
+</mapper>

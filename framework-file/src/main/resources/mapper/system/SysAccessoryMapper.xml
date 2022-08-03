@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.system.mapper.SysAccessoryMapper">
+
+    <!--    <select id="selectOne" resultType="cn.hb.software.gacim.system.domain.SysAccessory">-->
+    <!--        select * from SYS_ACCESSORY-->
+    <!--        <where>-->
+    <!--            status = '01'-->
+    <!--            <if test="md5 != null  and md5 != ''">and md5 = #{md5}</if>-->
+    <!--            <if test="saveMode != null ">and save_mode = #{saveMode}</if>-->
+    <!--            <if test="name != null ">and name = #{name}</if>-->
+    <!--            <if test="type != null ">and type = #{type}</if>-->
+    <!--            <if test="buzType != null ">and buz_type = #{buzType}</if>-->
+    <!--            <if test="buzId != null ">and buz_id = #{buzId}</if>-->
+    <!--        </where>-->
+    <!--    </select>-->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

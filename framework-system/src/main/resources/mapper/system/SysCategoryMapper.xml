@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.system.mapper.SysCategoryMapper">
+
+    <select id="selectByBaseCode" resultType="cn.silver.framework.system.domain.SysCategory"
+            parameterType="java.lang.String">
+        select *
+        from SYS_CATEGORY sc
+        where sc.BASE_CODE = #{baseCode}
+          and sc.CODE &lt;> #{baseCode}
+    </select>
+</mapper>

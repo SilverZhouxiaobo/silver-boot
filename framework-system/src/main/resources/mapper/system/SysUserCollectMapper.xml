@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hb.software.gacim.system.mapper.SysUserCollectMapper">
+    <resultMap type="cn.silver.framework.system.domain.SysUserHandle" id="BaseResult">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="businessType" column="business_type"/>
+        <result property="businessKey" column="business_key"/>
+        <result property="handleType" column="handle_type"/>
+        <result property="handleTime" column="handle_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+</mapper>

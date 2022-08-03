@@ -1,0 +1,23 @@
+package ${packageName}.mapper;
+
+#if($table.crud)
+    #set($Mapper="BaseMapper")
+#elseif($table.data || $table.sub)
+    #set($Mapper="BaseMapper")
+#elseif($table.tree)
+    #set($Mapper="TreeMapper")
+#end
+    $Mapper;
+import org.apache.ibatis.annotations.Mapper;
+import ${packageName}.domain.${ClassName};
+
+/**
+ * ${functionName}Mapper接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Mapper
+public interface ${ClassName}Mapper extends $Mapper<${ClassName}> {
+
+        }

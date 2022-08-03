@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silver.framework.workflow.mapper.FlowEntryMapper">
+    <resultMap id="BaseResultMap" type="cn.silver.framework.workflow.domain.FlowEntry">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="process_definition_name" jdbcType="VARCHAR" property="processDefinitionName"/>
+        <result column="process_definition_key" jdbcType="VARCHAR" property="processDefinitionKey"/>
+        <result column="category_id" jdbcType="BIGINT" property="categoryId"/>
+        <result column="main_entry_publish_id" jdbcType="BIGINT" property="mainEntryPublishId"/>
+        <result column="latest_publish_time" jdbcType="TIMESTAMP" property="latestPublishTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="bpmn_xml" jdbcType="LONGVARCHAR" property="bpmnXml"/>
+        <result column="bind_form_type" jdbcType="INTEGER" property="bindFormType"/>
+        <result column="page_id" jdbcType="BIGINT" property="pageId"/>
+        <result column="default_form_id" jdbcType="BIGINT" property="defaultFormId"/>
+        <result column="default_router_name" jdbcType="VARCHAR" property="defaultRouterName"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_name" jdbcType="VARCHAR" property="createName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_name" jdbcType="VARCHAR" property="updateName"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="deleted" jdbcType="VARCHAR" property="deleted"/>
+    </resultMap>
+
+    <!-- 如果有逻辑删除字段过滤，请写到这里 -->
+    <sql id="filterRef">
+        <!-- 这里必须加上全包名，否则当filterRef被其他Mapper.xml包含引用的时候，就会调用Mapper.xml中的该SQL片段 -->
+        <include refid="cn.silver.framework.workflow.mapper.FlowEntryMapper.inputFilterRef"/>
+    </sql>
+
+    <!-- 这里仅包含调用接口输入的主表过滤条件 -->
+    <sql id="inputFilterRef">
+        <if test="flowEntryFilter != null">
+            <if test="flowEntryFilter.processDefinitionName != null and flowEntryFilter.processDefinitionName != ''">
+                AND flow_entry.process_definition_name = #{flowEntryFilter.processDefinitionName}
+            </if>
+            <if test="flowEntryFilter.processDefinitionKey != null and flowEntryFilter.processDefinitionKey != ''">
+                AND flow_entry.process_definition_key = #{flowEntryFilter.processDefinitionKey}
+            </if>
+            <if test="flowEntryFilter.categoryId != null">
+                AND flow_entry.category_id = #{flowEntryFilter.categoryId}
+            </if>
+            <if test="flowEntryFilter.status != null">
+                AND flow_entry.status = #{flowEntryFilter.status}
+            </if>
+        </if>
+    </sql>
+
+    <select id="getFlowEntryList" resultMap="BaseResultMap"
+            parameterType="cn.silver.framework.workflow.domain.FlowEntry">
+        SELECT * FROM flow_entry
+        <where>
+            <include refid="filterRef"/>
+        </where>
+        <if test="orderBy != null and orderBy != ''">
+            ORDER BY ${orderBy}
+        </if>
+    </select>
+    <select id="selectOneByDefinitionKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select *
+        from FLOW_ENTRY
+        where PROCESS_DEFINITION_KEY = #{key}
+    </select>
+</mapper>
