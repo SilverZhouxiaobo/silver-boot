@@ -69,8 +69,13 @@ spring:
       # 主库数据源
       master:
         url: jdbc:oracle:thin:@192.168.1.201:1521/orcl
+<<<<<<< HEAD
         username: silver
         password: silver2022
+=======
+        username: gacim
+        password: gacim2022
+>>>>>>> origin/master
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
@@ -137,7 +142,11 @@ token:
 # 日志配置
 logging:
   level:
+<<<<<<< HEAD
     cn.silver.framework: debug
+=======
+    cn.hb.software.gacim: debug
+>>>>>>> origin/master
     org.springframework: warn
     org.flowable: info
 # Swagger配置
@@ -149,6 +158,7 @@ swagger:
 file:
   uploadType: minio
   path:
+<<<<<<< HEAD
     upload: /data/framework/file/upload
     webapp: /data/framework/file/webapp
     package: /data/framework/file/package
@@ -158,9 +168,24 @@ file:
     minio_name: framework
     minio_pass: framework2022
     bucketName: framework
+=======
+    upload: /data/gacim/file/upload
+    webapp: /data/gacim/file/webapp
+    package: /data/gacim/file/package
+    template: /data/gacim/file/templates
+  minio:
+    minio_url: http://192.168.1.10:9000
+    minio_name: gacim
+    minio_pass: gacim2022
+    bucketName: gacim
+>>>>>>> origin/master
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
     accessKey: ??
     secretKey: ??
+<<<<<<< HEAD
     bucketName: framework
+=======
+    bucketName: gacim
+>>>>>>> origin/master
     staticDomain: ??
