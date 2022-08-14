@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/system/config")
+@RequestMapping("/sys/config")
 @Api(tags = "配置管理-系统参数配置")
 public class SysConfigController extends DataController<ISysConfigService, SysConfig> {
 

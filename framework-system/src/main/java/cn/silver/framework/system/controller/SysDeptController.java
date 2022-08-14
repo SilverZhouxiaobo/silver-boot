@@ -25,7 +25,7 @@ import java.util.List;
  * @author hb
  */
 @RestController
-@RequestMapping("/system/dept")
+@RequestMapping("/sys/dept")
 @Api(tags = {"部门管理"})
 public class SysDeptController extends TreeController<ISysDeptService, SysDept> {
 

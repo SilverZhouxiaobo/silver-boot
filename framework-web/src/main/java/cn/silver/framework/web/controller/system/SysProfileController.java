@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @Api(tags = {"【个人信息业务处理】"})
-@RequestMapping("/system/user/profile")
+@RequestMapping("/sys/user/profile")
 public class SysProfileController extends BaseController {
     @Autowired
     private ISysUserService userService;

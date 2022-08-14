@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Api(tags = {"岗位信息操作处理"})
-@RequestMapping("/system/post")
+@RequestMapping("/sys/post")
 public class SysPostController extends DataController<ISysPostService, SysPost> {
     public SysPostController() {
         this.authorize = "system:post";

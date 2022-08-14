@@ -20,12 +20,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional> <!-- 表示依赖不会传递 -->
         </dependency>
-<!--        &lt;!&ndash; Mysql驱动包 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.oracle</groupId>-->
-<!--            <artifactId>ojdbc6</artifactId>-->
-<!--            <version>11.2.0.3</version>-->
-<!--        </dependency>-->
         <!-- 核心模块-->
         <dependency>
             <groupId>cn.silver.framework</groupId>

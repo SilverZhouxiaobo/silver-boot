@@ -26,7 +26,7 @@ import java.util.List;
  * @author hb
  */
 @RestController
-@RequestMapping("/system/dict/type")
+@RequestMapping("/sys/dict/type")
 @Api(tags = {"【数据字典类型信息】"})
 public class SysDictTypeController extends BaseController {
     @Autowired

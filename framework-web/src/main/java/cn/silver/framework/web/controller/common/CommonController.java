@@ -51,7 +51,6 @@ public class CommonController extends BaseController {
         enumMap.put("business-status", BusinessStatus.values());
         enumMap.put("operator-type", OperatorType.values());
         enumMap.put("search-type", SearchType.values());
-        enumMap.put("stock-data-type", StockDataType.values());
         enumMap.put("flow-comment", FlowComment.values());
         enumMap.put("file-type", FileType.values());
         enumMap.put("flow-approval-type", FlowApprovalType.values());
@@ -65,7 +64,6 @@ public class CommonController extends BaseController {
         enumMap.put("flow-work-order-type", FlowWorkOrderType.values());
         enumMap.put("message-status", MessageStatus.values());
         enumMap.put("message-type", MessageType.values());
-        enumMap.put("apply-config", SignUpConfig.values());
     }
 
     @Autowired

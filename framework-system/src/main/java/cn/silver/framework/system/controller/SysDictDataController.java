@@ -23,7 +23,7 @@ import java.util.List;
  * @author hb
  */
 @RestController
-@RequestMapping("/system/dict/data")
+@RequestMapping("/sys/dict/data")
 @Api(tags = {"字典管理-字典数据管理"})
 public class SysDictDataController extends DataController<ISysDictDataService, SysDictData> {
     @Autowired

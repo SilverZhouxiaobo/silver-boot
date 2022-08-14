@@ -38,7 +38,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @Api(tags = {"【用户信息】"})
-@RequestMapping("/system/user")
+@RequestMapping("/sys/user")
 public class SysUserController extends DataController<ISysUserService, SysUser> {
     @Autowired
     private ISysUserService userService;

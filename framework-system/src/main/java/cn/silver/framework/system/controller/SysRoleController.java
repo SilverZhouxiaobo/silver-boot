@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @Api(tags = {"角色管理"})
-@RequestMapping("/system/role")
+@RequestMapping("/sys/role")
 public class SysRoleController extends DataController<ISysRoleService, SysRole> {
 
     public SysRoleController() {

@@ -20,7 +20,7 @@ import java.util.Map;
  * @author hb
  */
 @RestController
-@RequestMapping("/system/notice")
+@RequestMapping("/sys/notice")
 @Api(tags = {"系统消息管理"})
 public class SysNoticeController extends DataController<ISysNoticeService, SysNotice> {
 

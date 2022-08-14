@@ -33,7 +33,7 @@ import java.util.List;
  */
 @RestController
 @Api(tags = {"【菜单信息】"})
-@RequestMapping("/system/menu")
+@RequestMapping("/sys/menu")
 public class SysMenuController extends BaseController {
     @Autowired
     private ISysMenuService menuService;
