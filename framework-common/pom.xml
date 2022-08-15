@@ -176,19 +176,5 @@
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.1</version>
-<<<<<<<<< Temporary merge branch 1
-            <scope>compile</scope>
-=========
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>4.0.1</version>
->>>>>>>>> Temporary merge branch 2
-        </dependency>
     </dependencies>
 </project>

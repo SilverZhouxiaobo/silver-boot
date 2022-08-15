@@ -25,3 +25,14 @@ hs_err_pid*
 /*.iml
 target
 /framework-authority/target
+*.iml
+/framework-common/framework-common.iml
+/framework-develop/framework-develop.iml
+/framework-file/framework-file.iml
+/framework-job/framework-job.iml
+/framework-message/framework-message.iml
+/framework-online/framework-online.iml
+/framework-report/framework-report.iml
+/framework-system/framework-system.iml
+/framework-web/framework-web.iml
+/framework-workflow/framework-workflow.iml
