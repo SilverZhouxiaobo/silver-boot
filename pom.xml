@@ -11,18 +11,16 @@
     <url>http://www.ruoyi.vip</url>
     <description>个人项目单机版</description>
     <modules>
-        <module>framework-common</module>
         <module>framework-web</module>
+        <module>framework-dependencies</module>
+        <module>framework-core</module>
         <module>framework-system</module>
-        <module>framework-job</module>
         <module>framework-develop</module>
+        <module>framework-job</module>
         <module>framework-file</module>
         <module>framework-workflow</module>
         <module>framework-message</module>
-        <module>framework-online</module>
-        <module>framework-report</module>
         <module>framework-bus</module>
-        <module>framework-dependencies</module>
     </modules>
     <properties>
         <framework.version>1.0</framework.version>

@@ -4,7 +4,7 @@ import cn.silver.framework.common.utils.StringUtils;
 import cn.silver.framework.core.bean.RegisterBody;
 import cn.silver.framework.core.bean.Response;
 import cn.silver.framework.core.controller.BaseController;
-import cn.silver.framework.system.common.service.SysRegisterService;
+import cn.silver.framework.system.api.service.SysRegisterService;
 import cn.silver.framework.system.service.ISysConfigService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -187,8 +187,10 @@
             <!-- 核心模块-->
             <dependency>
                 <groupId>cn.silver.framework</groupId>
-                <artifactId>framework-common</artifactId>
+                <artifactId>framework-core</artifactId>
                 <version>${framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- 系统模块-->
@@ -196,22 +198,23 @@
                 <groupId>cn.silver.framework</groupId>
                 <artifactId>framework-system</artifactId>
                 <version>${framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-
+            <!-- 代码生成-->
+            <dependency>
+                <groupId>cn.silver.framework</groupId>
+                <artifactId>framework-develop</artifactId>
+                <version>${framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- 定时任务-->
             <dependency>
                 <groupId>cn.silver.framework</groupId>
                 <artifactId>framework-job</artifactId>
                 <version>${framework.version}</version>
             </dependency>
-
-            <!-- 代码生成-->
-            <dependency>
-                <groupId>cn.silver.framework</groupId>
-                <artifactId>framework-develop</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-
             <!-- 文件服务 -->
             <dependency>
                 <groupId>cn.silver.framework</groupId>
