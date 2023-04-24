@@ -1,12 +1,8 @@
-package cn.silver.framework;
+package cn.silver.boot;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -19,18 +15,12 @@ import java.net.UnknownHostException;
  * @author hb
  */
 @Slf4j
-@EnableRabbit
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class FrameworkApplication extends SpringBootServletInitializer {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(FrameworkApplication.class);
-    }
+@SpringBootApplication
+public class SilverBootWebfluxApplication {
 
     public static void main(String[] args) throws UnknownHostException {
         System.setProperty("spring.devtools.restart.enabled", "false");
-        ConfigurableApplicationContext application = SpringApplication.run(FrameworkApplication.class, args);
+        ConfigurableApplicationContext application = SpringApplication.run(SilverBootWebfluxApplication.class, args);
         Environment env = application.getEnvironment();
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");

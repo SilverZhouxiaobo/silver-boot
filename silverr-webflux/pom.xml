@@ -18,6 +18,14 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional> <!-- 表示依赖不会传递 -->
         </dependency>
+        <dependency>
+            <groupId>cn.silver.boot</groupId>
+            <artifactId>silver-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!-- 系统管理模块-->
     </dependencies>
     <build>
