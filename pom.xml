@@ -3,30 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.silver.framework</groupId>
-    <artifactId>framework-boot</artifactId>
+    <groupId>cn.silver.boot</groupId>
+    <artifactId>silver-boot</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>silver-framework-boot</name>
+    <name>silver-boot</name>
     <url>http://www.ruoyi.vip</url>
     <description>个人项目单机版</description>
     <modules>
-        <module>framework-web</module>
-        <module>framework-dependencies</module>
-        <module>framework-core</module>
-        <module>framework-system</module>
-        <module>framework-develop</module>
-        <module>framework-job</module>
-        <module>framework-file</module>
-        <module>framework-workflow</module>
-        <module>framework-message</module>
-        <module>framework-bus</module>
+        <module>silverr-webflux</module>
+        <module>silver-dependencies</module>
+        <module>silver-system</module>
+        <module>silver-framework</module>
     </modules>
     <properties>
         <framework.version>1.0</framework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
 
@@ -35,9 +29,9 @@
         <dependencies>
             <!-- SpringBoot的依赖配置-->
             <dependency>
-                <groupId>cn.silver.framework</groupId>
-                <artifactId>framework-dependencies</artifactId>
-                <version>${framework.version}</version>
+                <groupId>cn.silver.boot</groupId>
+                <artifactId>silver-dependencies</artifactId>
+                <version>1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
