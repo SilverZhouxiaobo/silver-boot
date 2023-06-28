@@ -1,7 +1,16 @@
 # silver-boot
 
 #### 平台简介
-silver-boot是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。
+[![码云Gitee](https://gitee.com/silver-zhouxiaobo/silver-boot/badge/star.svg?theme=blue)](https://gitee.com/silver-zhouxiaobo/silver-boot)
+[![GitHub](https://img.shields.io/github/stars/JavaLionLi/RuoYi-Vue-Plus.svg?style=social&label=Stars)](https://github.com/dromara/RuoYi-Vue-Plus)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/silver-zhouxiaobo/silver-boot/blob/master/LICENSE)
+[![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-提供支持-blue.svg)](https://www.jetbrains.com/?from=Silver-Boot)
+<br>
+[![silver-boot](https://img.shields.io/badge/Silver_Boot-1.0-success.svg)](https://gitee.com/dromara/RuoYi-Vue-Plus)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0.5-blue.svg)]()
+[![JDK-17+](https://img.shields.io/badge/JDK-17-green.svg)]()
+
+> silver-boot是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。
 
 * 前端提供两个版本：vue（silver-vue）和 react（silver-viwer）
 * 后端采用Spring Boot、Apache shrio、Redis & Jwt。
@@ -11,6 +20,9 @@ silver-boot是一套全部开源的快速开发平台，毫无保留给个人及
 * 提供了技术栈（[Vue3](https://v3.cn.vuejs.org) [Element Plus](https://element-plus.org/zh-CN) [Vite](https://cn.vitejs.dev)
   ）版本[silver-Vue3](https://github.com/yangzongzhuan/RuoYi-Vue3)，保持同步更新。
 * 提供了微服务版本[Silver-Cloud](https://gitee.com/silver-zhouxiaobo/silver-cloud)
+
+> 项目代码、文档 均开源免费可商用 遵循开源协议在项目中保留开源协议文件即可<br>
+活到老写到老 为兴趣而开源 为学习而开源 为让大家真正可以学到技术而开源
 
 #### 软件架构
 本平台主要基于spring boot 3.0.5进行搭建，提供了openapi进行调用访问，支持无状态访问，公共api支持无权限访问，私有api需要登陆后进行访问。

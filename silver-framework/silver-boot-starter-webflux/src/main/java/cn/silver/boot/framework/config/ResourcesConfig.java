@@ -11,7 +11,7 @@ import org.springframework.web.reactive.result.view.UrlBasedViewResolver;
 /**
  * 通用配置
  *
- * @author hb
+ * @author silver
  */
 @Configuration
 public class ResourcesConfig implements WebFluxConfigurer {

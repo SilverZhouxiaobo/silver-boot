@@ -9,10 +9,8 @@ import cn.silver.boot.framework.exception.GlobalException;
 import cn.silver.boot.framework.exception.UtilException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpRequest;
 import org.springframework.validation.BindException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -46,7 +44,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public Response<Void> handleAccessDeniedException(AccessDeniedException e, ServerRequest request) {
         String requestURI = request.uri().getPath();
-        log.error("请求地址'{}',权限校验失败'{}'", requestURI, e.getMessage());
+        log.error("请求地址{},权限校验失败{}", requestURI, e.getMessage());
         return Response.error(ResponseEnum.FORBIDDEN.getCode(), "没有权限，请联系管理员授权");
     }
 
@@ -64,7 +62,6 @@ public class GlobalExceptionHandler {
      * 工具类异常
      *
      * @param e
-     *
      * @return
      */
     @ExceptionHandler(UtilException.class)

@@ -29,6 +29,11 @@
                 <artifactId>silver-boot-starter-webflux</artifactId>
                 <version>${framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>cn.silver.boot</groupId>
+                <artifactId>silver-system</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
