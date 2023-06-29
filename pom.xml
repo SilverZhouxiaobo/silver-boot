@@ -15,7 +15,6 @@
         <module>silver-framework</module>
         <module>silver-system</module>
         <module>silver-webflux</module>
-        <module>silver-develop</module>
     </modules>
     <properties>
         <framework.version>1.0</framework.version>

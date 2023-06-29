@@ -5,22 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.silver.boot</groupId>
-        <artifactId>silver-boot</artifactId>
+        <artifactId>silver-framework</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>silver-framework</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>silver-boot-starter-webflux</module>
-        <module>silver-boot-starter-openapi</module>
-        <module>silver-boot-starter-online</module>
-    </modules>
+    <artifactId>silver-boot-starter-generator</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+    </dependencies>
 </project>

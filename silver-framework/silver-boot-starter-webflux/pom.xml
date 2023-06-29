@@ -14,6 +14,7 @@
         <yaml.version>2.0</yaml.version>
         <knife4j.version>4.1.0</knife4j.version>
         <fastjson.version>2.0.25</fastjson.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,6 +39,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>

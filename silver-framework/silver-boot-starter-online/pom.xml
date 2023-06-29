@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.silver.boot</groupId>
-        <artifactId>silver-boot</artifactId>
+        <artifactId>silver-framework</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>silver-develop</artifactId>
+    <artifactId>silver-boot-starter-online</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
